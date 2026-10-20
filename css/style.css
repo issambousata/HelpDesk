@@ -1,0 +1,159 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: x-small;
+    background-color: #e7ebf0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+
+#logo {
+    width: 150px;
+}
+#nav {
+    display: none;
+}
+
+#menu {
+    font-size: large;
+}
+#hero {
+    padding: 20px 10px;
+}
+
+#formulair {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0px 10px;
+
+}
+
+#formulair form {
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-areas: "div_titre" "div_catégorie" "div_priorité" "div_description" "div_description" "div_button";
+    gap: 15px;
+}
+
+
+#div_titre {
+    grid-area: div_titre;
+}
+
+#div_catégorie {
+    grid-area: div_catégorie;
+}
+
+#div_priorité {
+    grid-area: div_priorité;
+}
+
+#div_description {
+    grid-area: div_description;
+}
+
+#div_button {
+    grid-area: div_button;
+}
+
+label {
+    font-weight: 600;
+}
+
+input,select,textarea {
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    margin-top: 8px ;
+    border-radius: 6px;
+    border: 1px solid black;
+}
+
+#button {
+    background-color: #252F3E;
+    color: #FFFFFF;
+}
+
+@media screen and (min-width : 426px) and (max-width :769px) {
+    body {
+        font-size: large;
+    }
+    #logo{
+        width: 250px;
+    }
+    #menu {
+        display: none;
+    }
+    #nav {
+        display: block;
+        font-size: small;
+    }
+    header {
+        padding: 0px 30px;
+    }
+
+    #hero {
+        padding: 20px 30px;
+    }
+
+    #formulair {
+        margin: 0px 30px;
+        padding: 20px;
+    }
+
+    #formulair form {
+        display: grid;
+        grid-template-columns: 1fr 0.3fr 0.7fr ;
+        grid-template-areas: "div_titre  div_catégorie div_catégorie   "
+                          "div_priorité  div_description div_description "
+                          ". . div_button" ;
+    }
+}
+
+
+@media (min-width :770px) {
+    body {
+        font-size: large;
+    }
+    #logo{
+        width: 250px;
+    }
+    #menu {
+        display: none;
+    }
+    #nav {
+        display: block;
+        font-size: small;
+    }
+    header {
+        padding: 0px 80px;
+    }
+
+    #hero {
+        padding: 20px 80px;
+    }
+
+    #formulair {
+        margin: 0px 80px;
+        padding: 20px;
+    }
+
+    #formulair form {
+        display: grid;
+        grid-template-columns:2fr 1fr 0.3fr 0.7fr ;
+        grid-template-areas: "div_titre div_catégorie div_priorité div_priorité"
+                          "div_description div_description div_description div_description"
+                          ". . . div_button" ;
+    }
+}
