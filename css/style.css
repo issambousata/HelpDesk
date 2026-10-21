@@ -85,6 +85,48 @@ input,select,textarea {
     color: #FFFFFF;
 }
 
+
+/* section les_demandes */
+#les_demandes {
+    padding: 10px;
+}
+#les_demandes #articles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    /* padding: 10px; */
+    border-radius: 10px;
+}
+#les_demandes #articles article {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 10px;
+}
+#les_demandes #les_demandes_head {
+    display: flex;
+    justify-content: space-between;
+}
+#les_demandes #les_demandes_head>p {
+    background-color:#b0c1d8 ;
+    border-radius: 45%;
+    padding: 10px;
+}
+#les_demandes #article_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#les_demandes #articles #status {
+    display: flex;
+    justify-content: left;
+    gap: 50px;
+    align-items: center;
+}
+#les_demandes #articles #buttons {
+    text-align: center;
+}
+
+
 @media screen and (min-width : 426px) and (max-width :769px) {
     body {
         font-size: large;
