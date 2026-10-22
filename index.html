@@ -35,14 +35,15 @@
         <section id="formulair">
             <h2>Créer une demande</h2>
             <p>Décrivez votre problème informatique.</p>
-            <form>
+            <form onsubmit="valider_form(event)"> 
                 <div id="div_titre">
                     <label for="Titre">Titre du problème *</label>
-                    <input type="text" name="titre" id="Titre" placeholder="Connexion Wi-Fi instable">
+                    <input type="text" name="titre" class="champs" id="Titre" placeholder="Connexion Wi-Fi instable" >
                 </div>
                 <div id="div_catégorie">
                     <label for="Catégorie">Catégorie *</label>
-                    <select name="Catégorie" id="Catégorie">
+                    <select name="Catégorie" class="champs"  id="Catégorie">
+                        <option value="">choir categorie</option>
                         <option value="Réseau">Réseau</option>
                         <option value="Matériel">Matériel</option>
                         <option value="Logiciel">Logiciel</option>
@@ -50,7 +51,8 @@
                 </div>
                 <div id="div_priorité">
                     <label for="Priorité">Priorité *</label>
-                    <select name="Priorité" id="Priorité">
+                    <select name="Priorité" class="champs" id="Priorité">
+                        <option value="">choir Priorité</option>
                         <option value="Basse">Basse</option>
                         <option value="Normale">Normale</option>
                         <option value="Haute">Haute</option>
@@ -58,7 +60,7 @@
                 </div>
                 <div id="div_description">
                     <label for="Description">Description *</label>
-                    <textarea name="Description" placeholder="Décrivez votre problème..." id="Description"></textarea>
+                    <textarea name="Description" class="champs" placeholder="Décrivez votre problème..." id="Description"  ></textarea>
                 </div>
                 <div id="div_button">
                     <input type="submit" value="＋  Ajouter la demande" id="button">
@@ -68,7 +70,7 @@
         <section id="les_demandes">
             <div id="les_demandes_head">
                 <h2>Liste des demandes</h2>
-                <p>3 demandes</p>
+                <p id="total_demandes"></p>
             </div>
             <div id="articles">
 
