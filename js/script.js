@@ -155,8 +155,15 @@ function Ajouter( titre, description, categorie, priorite) {
         categorie: categorie.value,
         priorite: priorite.value
     };
-
-    demandes.push(demande);
+    if (confirm("voulez vous ajouter ce demande ?")) {
+        demandes.push(demande);
+        titre.value = ""
+        description.value = ""
+        categorie.value = ""
+        priorite.value = ""
+        alert("le demande est ajouter avec saccès") ;
+        
+    }
     Afficher();
 }
 
