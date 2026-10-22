@@ -28,9 +28,9 @@ const container_articles = document.getElementById("articles");
 // l'affichage des demandes 
 function Afficher() {
 
+    container_articles.innerHTML = "";
     if (demandes.length > 0) {
 
-        container_articles.innerHTML = "";
 
         for (let i = 0; i < demandes.length; i++) {
             const article = document.createElement("article");
@@ -86,8 +86,10 @@ function Afficher() {
             supprimer_icon.setAttribute("class", "fa-solid fa-trash");
             const button_modifier = document.createElement("button");
             button_modifier.textContent = "Modifier";
+            button_modifier.addEventListener("click" ,()=>{ console.log("modifier")})
             const button_suprimer = document.createElement("button");
             button_suprimer.textContent = "Supprimer";
+            button_suprimer.addEventListener("click" ,()=>{ supprimer(demandes[i].id)})
             buttons_div.append(modifier_icon, button_modifier, supprimer_icon, button_suprimer);
             article.append(buttons_div);
 
@@ -168,3 +170,20 @@ function Ajouter( titre, description, categorie, priorite) {
 }
 
 
+
+// la fonction pour supprimer les demandes
+function supprimer(id){
+    demandes.forEach((demande , index)=>{
+        
+        if(demande.id == id){
+            
+            if(confirm("voulez vous supprimer ce demande !")){
+                demandes.splice(index , 1) ;
+                alert("le demand est suprimer avec saccès") ;                
+                Afficher() ;
+                 
+            }
+            
+        }
+    })
+}
