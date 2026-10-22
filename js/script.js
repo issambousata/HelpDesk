@@ -22,6 +22,9 @@ const demandes = [
     }
 ];
 
+
+let index_demande_modifier = -1;
+
 // get container de section les demandes
 const container_articles = document.getElementById("articles");
 
@@ -86,10 +89,10 @@ function Afficher() {
             supprimer_icon.setAttribute("class", "fa-solid fa-trash");
             const button_modifier = document.createElement("button");
             button_modifier.textContent = "Modifier";
-            button_modifier.addEventListener("click" ,()=>{ console.log("modifier")})
+            button_modifier.addEventListener("click", () => { modifier(demandes[i].id) })
             const button_suprimer = document.createElement("button");
             button_suprimer.textContent = "Supprimer";
-            button_suprimer.addEventListener("click" ,()=>{ supprimer(demandes[i].id)})
+            button_suprimer.addEventListener("click", () => { supprimer(demandes[i].id) })
             buttons_div.append(modifier_icon, button_modifier, supprimer_icon, button_suprimer);
             article.append(buttons_div);
 
@@ -120,51 +123,57 @@ function Afficher() {
 Afficher()
 
 // la foction pour verefier les champs de form avant d'ajouter un demande 
-const les_champs = document.querySelectorAll(".champs") ;
+const les_champs = document.querySelectorAll(".champs");
 
-les_champs.forEach((champ)=>{
-    champ.addEventListener("input" , ()=>{
+les_champs.forEach((champ) => {
+    champ.addEventListener("input", () => {
         champ.setCustomValidity("")
     })
 })
 
-function valider_form(event){
+
+// get les elements de form 
+const input_titre = document.getElementById("Titre");
+const input_categorie = document.getElementById("Catégorie");
+const input_priorite = document.getElementById("Priorité");
+const input_Description = document.getElementById("Description");
+
+function valider_form(event) {
     event.preventDefault();
 
-    const input_titre = document.getElementById("Titre");
-    const input_categorie = document.getElementById("Catégorie");
-    const input_priorite = document.getElementById("Priorité");
-    const input_Description = document.getElementById("Description");
 
-    (input_titre.value.trim().length!==0)     ?  input_titre.setCustomValidity("")            :   input_titre.setCustomValidity("vous devez entrer le titre de votre demande") ;
-    (input_categorie.value.trim().length!==0) ?  input_categorie.setCustomValidity("")        :   input_categorie.setCustomValidity("vous devez choisir categorie de votre demande") ;
-    (input_priorite.value.trim().length!==0)  ?  input_priorite.setCustomValidity("")          :   input_priorite.setCustomValidity("vous devez choisir le priorite de votre demande") ;
-    (input_Description.value.trim().length!==0)?  input_Description.setCustomValidity("") :   input_Description.setCustomValidity("vous devez ecrire un description de votre demande") ;
+    (input_titre.value.trim().length !== 0) ? input_titre.setCustomValidity("") : input_titre.setCustomValidity("vous devez entrer le titre de votre demande");
+    (input_categorie.value.trim().length !== 0) ? input_categorie.setCustomValidity("") : input_categorie.setCustomValidity("vous devez choisir categorie de votre demande");
+    (input_priorite.value.trim().length !== 0) ? input_priorite.setCustomValidity("") : input_priorite.setCustomValidity("vous devez choisir le priorite de votre demande");
+    (input_Description.value.trim().length !== 0) ? input_Description.setCustomValidity("") : input_Description.setCustomValidity("vous devez ecrire un description de votre demande");
 
-    if(!(input_titre.reportValidity()) && !(input_Description.reportValidity()) && !(input_categorie.reportValidity()) && !(input_priorite.reportValidity())){
-        return ;
+    if (!(input_titre.reportValidity()) && !(input_Description.reportValidity()) && !(input_categorie.reportValidity()) && !(input_priorite.reportValidity())) {
+        return;
     }
-    Ajouter(input_titre , input_Description , input_categorie , input_priorite)
+    index_demande_modifier >= 0 ? modifier_demande() : Ajouter();
+
 }
 
+
+
 // la fonction d'ajouter les demandes
-function Ajouter( titre, description, categorie, priorite) {
+function Ajouter() {
 
     const demande = {
         id: demandes.length + 1,
-        titre: titre.value.trim(),
-        description: description.value.trim(),
-        categorie: categorie.value,
-        priorite: priorite.value
+        titre: input_titre.value.trim(),
+        description: input_Description.value.trim(),
+        categorie: input_categorie.value,
+        priorite: input_priorite.value
     };
     if (confirm("voulez vous ajouter ce demande ?")) {
         demandes.push(demande);
-        titre.value = ""
-        description.value = ""
-        categorie.value = ""
-        priorite.value = ""
-        alert("le demande est ajouter avec saccès") ;
-        
+        input_titre.value = ""
+        input_Description.value = ""
+        input_categorie.value = ""
+        input_priorite.value = ""
+        alert("le demande est ajouter avec saccès");
+
     }
     Afficher();
 }
@@ -172,18 +181,61 @@ function Ajouter( titre, description, categorie, priorite) {
 
 
 // la fonction pour supprimer les demandes
-function supprimer(id){
-    demandes.forEach((demande , index)=>{
-        
-        if(demande.id == id){
-            
-            if(confirm("voulez vous supprimer ce demande !")){
-                demandes.splice(index , 1) ;
-                alert("le demand est suprimer avec saccès") ;                
-                Afficher() ;
-                 
+function supprimer(id) {
+    demandes.forEach((demande, index) => {
+
+        if (demande.id == id) {
+
+            if (confirm("voulez vous supprimer ce demande !")) {
+                demandes.splice(index, 1);
+                alert("le demand est suprimer avec saccès");
+                Afficher();
+
             }
-            
+
         }
     })
+}
+
+function modifier(id) {
+    const btn = document.getElementById("button");
+    btn.value = "Modifier";
+
+    index_demande_modifier = demandes.findIndex((demande) => demande.id == id);
+    input_titre.value = demandes[index_demande_modifier].titre;
+    input_categorie.value = demandes[index_demande_modifier].categorie;
+    input_priorite.value = demandes[index_demande_modifier].priorite;
+    input_Description.value = demandes[index_demande_modifier].description;
+
+
+
+}
+function modifier_demande() {
+
+    console.log(demandes[index_demande_modifier].titre);
+    console.log(input_titre.value);
+    if (confirm("voulez vous modifier ce demande !")) {
+        demandes[index_demande_modifier].titre = input_titre.value;
+        demandes[index_demande_modifier].description = input_Description.value;
+        demandes[index_demande_modifier].categorie = input_categorie.value;
+        demandes[index_demande_modifier].priorite = input_priorite.value;
+
+        // renitialiser les champs
+        input_titre.value = ""
+        input_Description.value = ""
+        input_categorie.value = ""
+        input_priorite.value = ""
+
+        //initialiser le variable 
+        index_demande_modifier = -1;
+
+
+        const btn = document.getElementById("button");
+        btn.value = "＋  Ajouter la demande";
+
+        alert("le demande est ajouter avec saccès");
+    }
+    Afficher()
+
+
 }
