@@ -63,18 +63,38 @@
                     <textarea name="Description" class="champs" placeholder="Décrivez votre problème..." id="Description"  ></textarea>
                 </div>
                 <div id="div_button">
-                    <input type="submit" value="＋  Ajouter la demande" id="button">
+                    <input type="submit" value="＋  Ajouter la demande" class="btn" id="button">
+                    <input type="submit" value="Annuler" class="btn" id="button_anuller">
                 </div>
             </form>
         </section>
         <section id="les_demandes">
-            <div id="les_demandes_head">
-                <h2>Liste des demandes</h2>
-                <p id="total_demandes"></p>
+            <div id="header_demandes">
+
+                <div id="les_demandes_head">
+                    <h2>Liste des demandes</h2>
+                    <p id="total_demandes"></p>
+                </div>
+                <div id="cartes_taible">
+                    <button id="Cartes">Cartes</button>
+                    <button id="tableau">Tableau</button>
+                </div>
             </div>
             <div id="articles">
 
 
+            </div>
+            <div id="taible_container" >
+                <table>
+                    <thead id="tableau_thead">
+                        <tr id="tableau_thead_tr">
+ 
+                        </tr>
+                    </thead>
+                    <tbody id="table_body">
+
+                    </tbody>
+                </table>
             </div>
         </section>
     </main>
