@@ -353,7 +353,7 @@ function modifier_demande() {
         btn.value = "＋  Ajouter la demande";
 
 
-        alert("le demande est ajouter avec saccès");
+        alert("le demande est modifier avec saccès");
     }
     Afficher()
 
